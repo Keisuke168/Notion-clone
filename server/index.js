@@ -7,6 +7,7 @@ const app = express();
 const PORT = 5000;
 require("dotenv").config();
 
+
 //DB connection
 try {
     mongoose.connect(process.env.MONGODB_URL);
