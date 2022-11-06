@@ -7,6 +7,7 @@ const app = express();
 const PORT = 5000;
 require("dotenv").config();
 
+app.use(express.json());
 
 //DB connection
 try {
@@ -26,7 +27,7 @@ app.post("/register", async (req, res) => {
         const user = await User.create(req.body);
         // JWT
         const token = JWT.sign({ id: user._id}, process.env.TOKEN_SECRET_KEY, {
-            expireIn: "24h",
+            expiresIn: "24h",
         });
         return res.status(200).json({ user, token }); 
     }catch(error){
