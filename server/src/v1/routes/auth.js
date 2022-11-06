@@ -29,4 +29,17 @@ router.post(
   userController.register
 );
 
+// login
+router.post(
+  "/login",
+  body("username")
+    .isLength({ min: 8 })
+    .withMessage("ユーザー名は８文字以上である必要があります"),
+  body("password")
+    .isLength({ min: 8 })
+    .withMessage("パスワードは８文字以上である必要があります"),
+  validation.validate,
+  userController.login
+);
+
 module.exports = router;
